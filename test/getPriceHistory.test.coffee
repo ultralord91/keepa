@@ -12,5 +12,6 @@ describe 'getPriceHistory(...)', ->
       should.exist results.product.AMAZON
       should.exist results.product.MARKET_NEW
       should.exist results.product.MARKET_USED
+      # console.log require('util').inspect results, false, 10, true
 
       done()

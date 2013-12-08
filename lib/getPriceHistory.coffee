@@ -40,16 +40,18 @@ module.exports = (asin, options, callback) ->
     return callback err  if err?
 
     for market in [ 'AMAZON', 'MARKET_NEW', 'MARKET_USED' ]
-      priceMap = {}
+      prices = []
 
       for element, index in priceHistory.product[market]
         if index % 2 is 0
-          k = getDateFromKeepaHours element
+          date = getDateFromKeepaHours element
         else
-          v = element
-          v = element / 100  if element > 0
-          priceMap[k] = v
+          price = element
+          price = element / 100  if element > 0
+          prices.push
+            date: date
+            price: price
 
-      priceHistory.product[market] = priceMap
+      priceHistory.product[market] = prices
 
     callback null, priceHistory
